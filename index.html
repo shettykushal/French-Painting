@@ -86,13 +86,132 @@ body:before{content:'';position:fixed;inset:0;z-index:35;pointer-events:none;opa
 @media(max-width:850px){.topbar{height:77px}.brand{font-size:13px}.hero{padding-top:115px}.hero-portrait{width:55%}}
 @media(max-width:520px){.hero h1{font-size:80px}.metrics strong{font-size:30px}.orbit-item{font-size:13px!important;padding:8px 10px!important;max-width:128px}.circle-wrap{min-height:530px}.section-title{font-size:65px}.room-copy h2{font-size:70px}.paper{padding:25px}}
 @media(prefers-reduced-motion:reduce){.hero-portrait,.circle-guide{animation:none!important}}
+
+#collection{display:none!important}
+.era-exhibition{color:#37251c;background:linear-gradient(135deg,#f0e4ce,#e2caa8 57%,#ede0c8);padding:130px 6.5vw 110px;border-top:6px double #ae8750;border-bottom:9px solid #946735;position:relative}
+.era-exhibition:before{content:"✣";font:450px Georgia,serif;position:absolute;right:-3%;top:0;color:#6b3b2b0d;pointer-events:none}
+.era-overline,.era-meta{font:11px 'Cinzel',Georgia,serif;letter-spacing:.18em;color:#875e34}
+.era-exhibition>h2{font:500 clamp(65px,8.5vw,130px)/.95 'Cormorant Garamond',Georgia,serif;letter-spacing:-.06em;margin:18px 0;color:#3d2620}
+.era-exhibition>h2 em{color:#6f2d38;font-weight:400}
+.era-intro{max-width:580px;font:20px/1.5 'EB Garamond',Georgia,serif;color:#5c4534;margin:0 0 44px}
+.era-doors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;perspective:1000px}
+.era-door{min-width:0;background:#d6b88e;color:#3a2820;border:1px solid #8f653c;text-align:left;padding:11px;box-shadow:0 10px 30px #452a1b25;transition:transform .7s cubic-bezier(.2,.8,.2,1),background .5s,box-shadow .5s;position:relative}
+.era-door:hover,.era-door.selected{transform:translateY(-12px);background:#ead8b7;box-shadow:0 25px 35px #452a1b3b}
+.era-door.selected:after{content:"";position:absolute;inset:5px;border:1px solid #a97b45;pointer-events:none}
+.era-door-number{display:block;font:10px 'Cinzel',serif;letter-spacing:.06em;padding:8px 5px 15px;color:#69482d}
+.era-door-image{display:block;height:clamp(155px,18vw,255px);border:7px ridge #a67b3e;overflow:hidden;background:#4c3026;box-shadow:inset 0 0 20px #0007}
+.era-door-image img{width:100%;height:100%;object-fit:cover;filter:sepia(.13) saturate(.78);transition:transform 1s cubic-bezier(.16,1,.3,1),filter 1s}
+.era-door:hover img{transform:scale(1.11);filter:sepia(0) saturate(1.1)}
+.era-door-title{font:500 clamp(25px,2.7vw,40px)/1 'Cormorant Garamond',serif;display:block;padding:18px 4px 9px;letter-spacing:-.03em;overflow-wrap:anywhere}
+.era-door-bottom{display:flex;justify-content:space-between;gap:4px;font:15px 'Cormorant Garamond',serif;color:#674532;padding:0 4px 8px}.era-door-bottom b{font-size:23px;font-weight:400}
+.era-tour{margin-top:105px;scroll-margin-top:100px}
+.era-tour-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;border-top:1px solid #9e7548;padding:25px 0 40px}
+.era-tour-heading h3{font:500 clamp(55px,6vw,90px)/1 'Cormorant Garamond',serif;letter-spacing:-.055em;margin:12px 0;color:#5f2532}
+.era-tour-heading p{font:18px/1.55 'EB Garamond',serif;color:#6c503b;max-width:620px;margin:0}
+.era-tour-controls{display:flex;gap:16px;align-items:center;white-space:nowrap;color:#714b32;font:12px 'Cinzel',serif}
+.era-tour-controls button{font:24px 'Cormorant Garamond',serif;background:#ead4af;border:1px solid #966d3b;color:#4c2921;width:48px;height:48px;transition:background .3s,transform .3s}
+.era-tour-controls button:hover{background:#6b3038;color:#f8e4cb;transform:scale(1.08)}
+.era-gallery-view{display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:start}
+.era-featured{padding:28px;background:#59312b;box-shadow:0 24px 50px #2b1a1855;position:sticky;top:112px}
+.era-featured-picture{border:14px ridge #bd9556;background:#231816;overflow:hidden;min-height:400px;display:grid;place-items:center}
+.era-featured-picture img{width:100%;height:auto;max-height:560px;min-height:380px;object-fit:contain;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.era-featured-picture:hover img{transform:scale(1.035)}
+.era-featured-plaque{background:#ead9b6;color:#452819;margin:18px 4px 0;padding:16px 20px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.era-featured-plaque span{font:11px 'Cinzel',serif;letter-spacing:.08em;grid-column:1/-1;color:#855b33}
+.era-featured-plaque strong{font:500 32px/1 'Cormorant Garamond',serif;letter-spacing:-.02em}
+.era-featured-plaque small{font:16px 'EB Garamond',serif;grid-column:1}
+.era-featured-plaque button{grid-column:2;grid-row:2/4;align-self:end;border:1px solid #9a764d;background:transparent;color:#4c2821;padding:10px;font:15px 'Cormorant Garamond',serif}
+.era-wall-heading{font:11px 'Cinzel',serif;letter-spacing:.12em;color:#7e5938;border-bottom:1px solid #b79a73;padding-bottom:16px;display:flex;justify-content:space-between}
+.era-artworks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 17px;padding:24px 0}
+.era-artwork{background:transparent;border:0;color:#3e271b;padding:0;text-align:left;min-width:0}
+.era-artwork-image{height:190px;background:#513428;border:8px ridge #a9854e;overflow:hidden;display:block;box-shadow:0 8px 17px #55361c30;transition:transform .5s,box-shadow .5s}
+.era-artwork:hover .era-artwork-image,.era-artwork.active .era-artwork-image{transform:translateY(-5px);box-shadow:0 17px 24px #55361c45;outline:2px solid #713e33;outline-offset:3px}
+.era-artwork-image img{width:100%;height:100%;object-fit:cover;transition:transform .8s}.era-artwork:hover img{transform:scale(1.08)}
+.era-artwork strong{font:500 22px/1.1 'Cormorant Garamond',serif;display:block;margin:13px 0 4px}
+.era-artwork small{font:15px 'EB Garamond',serif;color:#72553c}
+.era-artist-note{border-top:1px solid #ab895f;padding:25px 0;min-height:150px}
+.era-artist-note h4{font:500 30px 'Cormorant Garamond',serif;color:#652d39;margin:6px 0}
+.era-artist-note p{font:17px/1.6 'EB Garamond',serif;color:#604737;max-width:500px;margin:0 0 15px}
+.era-artist-note button{background:transparent;border:0;border-bottom:1px solid #773c36;padding:0 0 4px;color:#773c36;font:18px 'Cormorant Garamond',serif}
+.era-footnote{font:10px 'Cinzel',serif;color:#805d39;letter-spacing:.09em;padding-top:50px}
+.era-scene-transition{animation:era-room-appear .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes era-room-appear{from{opacity:0;transform:translateY(35px) scale(.985);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(max-width:850px){.era-doors{grid-template-columns:repeat(2,minmax(0,1fr))}.era-gallery-view{grid-template-columns:1fr}.era-featured{position:relative;top:auto}.era-tour{margin-top:75px}}
+@media(max-width:520px){.era-exhibition{padding:95px 5vw 70px}.era-exhibition>h2{font-size:65px}.era-door-image{height:165px}.era-door-title{font-size:26px}.era-door-number{font-size:8px}.era-door-bottom{font-size:12px}.era-tour-heading{display:block}.era-tour-controls{margin-top:25px}.era-featured{padding:13px}.era-featured-picture{min-height:285px}.era-featured-picture img{min-height:285px}.era-artwork-image{height:150px}.era-featured-plaque strong{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.era-scene-transition{animation:none!important}}
+
+/* APPLE-STYLE HORIZONTAL ERA REVEAL — RETAINS HISTORIC SALON DESIGN */
+.era-doors{display:flex!important;overflow-x:auto;overflow-y:visible;gap:22px;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth;padding:22px max(5px,calc((100% - 450px)/12)) 38px!important;touch-action:pan-x;overscroll-behavior-inline:contain;perspective:none!important;max-width:100%;position:relative}
+.era-doors::-webkit-scrollbar{display:none}
+.era-door{scroll-snap-align:center;flex:0 0 clamp(295px,35vw,465px);min-width:0;min-height:450px;transform:none!important;will-change:transform;transition:background .45s ease,box-shadow .65s cubic-bezier(.18,.8,.2,1),filter .5s!important;overflow:hidden}
+.era-door:hover,.era-door.selected{box-shadow:0 25px 46px #492b1c4d!important;filter:brightness(1.035)}
+.era-door-image{height:clamp(225px,25vw,335px)!important;overflow:hidden}
+.era-door-image img{transform:scale(1.01);transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .8s!important}
+.era-door:hover .era-door-image img{transform:scale(1.08)}
+.era-door-title{font-size:clamp(31px,3vw,47px)!important}
+.era-rail-header{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:0 0 4px}
+.era-rail-kicker{font:11px 'Cinzel',serif;letter-spacing:.16em;color:#7f5937}
+.era-rail-actions{display:flex;align-items:center;gap:12px}
+.era-rail-actions button{height:47px;width:47px;border:1px solid #997243;background:#ead5b4;color:#5a2a29;font:25px 'Cormorant Garamond',serif;transition:background .3s,color .3s,transform .3s}
+.era-rail-actions button:hover{background:#652c39;color:#f3dfc0;transform:scale(1.06)}
+.era-rail-actions span{font:12px 'Cinzel',serif;color:#916943;min-width:51px;text-align:center}
+.era-progress{height:2px;background:#b69567;position:relative;overflow:hidden;margin-top:-9px;margin-bottom:34px}
+.era-progress>span{position:absolute;left:0;top:0;bottom:0;width:25%;background:#742f3b;transition:transform .3s}
+.era-doors:focus-within{scroll-behavior:smooth}
+.era-cinematic{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0;background:#211410;overflow:hidden;display:grid;place-items:center}
+.era-cinematic:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 52%,#9e75474a,transparent 70%),repeating-linear-gradient(90deg,#c69e5710 0 1px,transparent 1px 140px)}
+.era-cinematic-img{position:fixed;display:block;object-fit:cover;border:9px ridge #b88e4c;box-shadow:0 34px 95px #0009;will-change:top,left,width,height,transform;transform-origin:center center}
+.era-cinematic-label{position:absolute;bottom:7%;text-align:center;color:#f4dfbd;font:clamp(27px,6vw,85px) 'Cormorant Garamond',serif;letter-spacing:-.04em;opacity:0;transform:translateY(15px)}
+.era-tour-heading,.era-gallery-view{transform-origin:top center}
+@media(max-width:850px){.era-doors{display:flex!important;grid-template-columns:none!important}.era-door{flex-basis:clamp(280px,66vw,420px)}}
+@media(max-width:520px){.era-doors{gap:16px;padding:18px 6px 35px!important}.era-door{flex:0 0 82vw;min-height:390px}.era-door-image{height:240px!important}.era-rail-header{align-items:flex-end}.era-rail-kicker{font-size:9px}.era-rail-actions button{width:40px;height:40px}}
+@media(prefers-reduced-motion:reduce){.era-doors{scroll-behavior:auto!important}.era-cinematic{display:none!important}}
+
+/* Continuous-era filmstrip and scroll-linked cinematic gallery */
+.era-doors{scroll-snap-type:none!important;scroll-behavior:auto!important;cursor:grab;overflow-x:auto;gap:22px!important;scrollbar-width:none;padding-bottom:44px!important}
+.era-doors:active{cursor:grabbing}
+.era-door{flex-shrink:0;cursor:pointer}
+.era-rail-header{margin-top:13px}
+.era-rail-actions{display:none!important}
+.era-rail-kicker{font-size:12px!important}
+.era-rail-kicker:before{content:'✧  ';color:#986d40}
+.era-progress{margin-bottom:34px!important}
+.era-progress>span{width:24%;transition:none!important}
+.era-cinematic{background:#201410f7;display:none}
+.era-cinematic-label{font-family:'Cormorant Garamond',Georgia,serif}
+.era-cinematic-img{object-fit:cover}
+.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper{--appear-y:36px}
+.scroll-reveal{opacity:0;transform:translate3d(0,var(--appear-y),0);filter:blur(5px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.25s cubic-bezier(.16,1,.3,1),filter 1s}
+.scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+.era-featured-picture{overflow:hidden}
+.era-featured-picture img{will-change:transform}
+.era-gallery-view{position:relative}
+.era-gallery-view:before{content:'';position:absolute;inset:-12px;pointer-events:none;border-top:1px solid #a37a47;opacity:.5}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}.era-doors{scroll-behavior:auto!important}}
 </style></head><body>
-<header class="topbar"><a href="#home" class="brand"><i>✳</i> LE MUSÉE <span style="color:#b198ff">DES BEAUX-ARTS</span></a><nav class="nav"><a href="#collection">La collection</a><a href="#room">Galeries</a><a href="#timeline">Mouvements</a><a href="#journal">Le journal</a><a href="#quiz" class="button" style="color:white">Explorer ↗</a></nav></header>
-<main><section id="home" class="hero"><div class="fadein"><div class="eyebrow">✧ Paris · une expérience immersive</div><h1>LE SALON<br>DES <em>ARTS.</em></h1><p>Step inside a nineteenth-century French salon, where gilded paintings, handwritten chronicles and the great masters come alive.</p><div class="cta"><a class="button" href="#collection">Enter the exhibition ↗</a><a class="textlink" href="#journal">Discover the journal</a></div></div><div class="hero-visual" aria-hidden="true"><div class="halo"></div><div class="halo two"></div><div class="hero-portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet,_Impression,_soleil_levant.jpg?width=800" alt=""></div><div class="floating-dot"></div><div class="floating-dot small"></div></div><span class="scrolldown">↓ SCROLL TO EXPLORE</span></section><div class="metrics"><div><strong>07</strong><span>Artistes</span></div><div><strong>04</strong><span>Mouvements</span></div><div><strong>14</strong><span>Chefs-d'œuvre</span></div><div><strong>XIXᵉ</strong><span>Siècle</span></div></div>
+<header class="topbar"><a href="#home" class="brand"><i>✳</i> LE MUSÉE <span style="color:#b198ff">DES BEAUX-ARTS</span></a><nav class="nav"><a href="#eras">La collection</a><a href="#room">Galeries</a><a href="#timeline">Mouvements</a><a href="#journal">Le journal</a><a href="#quiz" class="button" style="color:white">Explorer ↗</a></nav></header>
+<main><section id="home" class="hero"><div class="fadein"><div class="eyebrow">✧ Paris · une expérience immersive</div><h1>LE SALON<br>DES <em>ARTS.</em></h1><p>Step inside a nineteenth-century French salon, where gilded paintings, handwritten chronicles and the great masters come alive.</p><div class="cta"><a class="button" href="#eras">Enter the exhibition ↗</a><a class="textlink" href="#journal">Discover the journal</a></div></div><div class="hero-visual" aria-hidden="true"><div class="halo"></div><div class="halo two"></div><div class="hero-portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet,_Impression,_soleil_levant.jpg?width=800" alt=""></div><div class="floating-dot"></div><div class="floating-dot small"></div></div><span class="scrolldown">↓ SCROLL TO EXPLORE</span></section><div class="metrics"><div><strong>07</strong><span>Artistes</span></div><div><strong>04</strong><span>Mouvements</span></div><div><strong>14</strong><span>Chefs-d'œuvre</span></div><div><strong>XIXᵉ</strong><span>Siècle</span></div></div>
 <section id="collection" class="section collection"><div class="eyebrow">01 / La collection</div><h2 class="section-title">La roue des arts.</h2><p class="section-intro">Turn the antique wheel of artistic movements. Choose a school of painting, then enter its salon to discover the masters.</p><div class="circle-wrap" id="circleWrap"><div class="circle-guide"></div><div class="collection-center" id="circleCenter" role="button" tabindex="0" aria-label="Enter selected gallery"><img id="circleImage" src="" alt="Selected collection artwork"></div><div id="orbitItems"></div></div><div class="collection-caption"><strong id="collectionName">Tous les artistes</strong><span id="collectionDescription">Seven perspectives. One living museum.</span></div><div style="text-align:center;margin-top:22px"><button class="button" id="enterCollection">Enter selected gallery ↗</button></div></section>
+
+<section id="eras" class="era-exhibition">
+  <div class="era-overline">✦ LE MUSÉE FRANÇAIS · VISITE IMMERSIVE ✦</div>
+  <h2>Les salles <em>du temps.</em></h2>
+  <p class="era-intro">Choose an artistic era. Enter its salon, examine paintings in their gilded frames and meet the artists who shaped a century of art.</p>
+  <div class="era-doors" id="eraDoors" aria-label="Choose an artistic era">
+    <button class="era-door selected" data-era="0"><span class="era-door-number">SALLE I · 1800–1850</span><span class="era-door-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Death%20of%20Sardanapalus%20by%20Eug%C3%A8ne%20Delacroix.jpg?width=650" alt="Death of Sardanapalus"></span><span class="era-door-title">Romantisme</span><span class="era-door-bottom">Passion & imagination <b>↗</b></span></button>
+    <button class="era-door" data-era="1"><span class="era-door-number">SALLE II · 1850–1870</span><span class="era-door-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Olympia%20-%20Google%20Art%20Project%203.jpg?width=650" alt="Olympia"></span><span class="era-door-title">Modernité</span><span class="era-door-bottom">A new way of seeing <b>↗</b></span></button>
+    <button class="era-door" data-era="2"><span class="era-door-number">SALLE III · 1870–1890</span><span class="era-door-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%2C%20Impression%2C%20soleil%20levant.jpg?width=650" alt="Impression Sunrise"></span><span class="era-door-title">Impressionnisme</span><span class="era-door-bottom">Light & fleeting moments <b>↗</b></span></button>
+    <button class="era-door" data-era="3"><span class="era-door-number">SALLE IV · 1880–1905</span><span class="era-door-image"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg?width=650" alt="Starry Night"></span><span class="era-door-title">Postimpressionnisme</span><span class="era-door-bottom">Colour & emotion <b>↗</b></span></button>
+  </div>
+  <div class="era-tour" id="eraTour">
+    <div class="era-tour-heading"><div><span class="era-meta" id="eraMeta">SALLE I · 1800–1850</span><h3 id="eraTitle">Le Romantisme</h3><p id="eraDescription"></p></div><div class="era-tour-controls"><button id="eraPrevious" aria-label="Previous era">←</button><span id="eraCount">01 / 04</span><button id="eraNext" aria-label="Next era">→</button></div></div>
+    <div class="era-gallery-view"><div class="era-featured"><div class="era-featured-picture"><img id="eraFeaturedImage" alt="Featured artwork" src=""></div><div class="era-featured-plaque"><span id="eraFeaturedArtist"></span><strong id="eraFeaturedTitle"></strong><small id="eraFeaturedDate"></small><button id="eraFeaturedZoom">Voir en grand ↗</button></div></div><div class="era-wall"><div class="era-wall-heading">LES ŒUVRES DE LA SALLE <span id="eraArtworkCount"></span></div><div class="era-artworks" id="eraArtworks"></div><div class="era-artist-note" id="eraArtistNote"></div></div></div>
+    <div class="era-footnote">SCROLL TO EXPLORE · CLICK A PAINTING TO EXAMINE IT · USE THE ARROWS TO VISIT THE NEXT SALON</div>
+  </div>
+</section>
 <section class="room" id="room"><div class="room-top"><div class="eyebrow" id="roomLabel">02 / Galerie immersive</div><button id="nextArtist">Next artist →</button></div><div class="room-grid" id="roomGrid"><div class="painting-stage" id="paintingStage" role="button" tabindex="0" aria-label="Zoom into painting"><img id="mainPainting" alt="Featured painting" src=""></div><div class="room-copy"><div class="eyebrow" id="artistMovement"></div><h2 id="artistName"></h2><div class="dates" id="artistDates"></div><p id="artistBio"></p><h3>Œuvres majeures / Masterpieces</h3><div class="works" id="works"></div><div class="room-controls"><button class="button" id="prevArtist">← Previous</button><button class="narration" id="narrate">▶ Écouter en français</button><span class="room-progress" id="roomProgress"></span></div><p style="font-size:11px;opacity:.6">Narration uses your browser's available French speech voice.</p></div></div></section>
 <section id="timeline" class="section timeline"><div class="eyebrow">03 / Repères historiques</div><h2 class="section-title">Un siècle<br>de peinture.</h2><p class="section-intro">The nineteenth century transformed how artists saw and represented their world.</p><div class="timeline-items"><div class="period"><span class="year">1800–1850</span><h3>Romantisme</h3><p>Emotion, imagination, freedom and dramatic history. Delacroix.</p></div><div class="period"><span class="year">1850–1870</span><h3>Réalisme & modernité</h3><p>Modern life and a challenge to academic convention. Manet.</p></div><div class="period"><span class="year">1870–1890</span><h3>Impressionnisme</h3><p>Light, movement and fleeting moments. Monet, Renoir and Degas.</p></div><div class="period"><span class="year">1880–1905</span><h3>Postimpressionnisme</h3><p>Personal vision, vibrant colour and new forms. Cézanne and Van Gogh.</p></div></div></section>
-<section id="journal" class="section journal"><div class="paper"><small>ÉDITION SPÉCIALE · PARIS · 1890</small><div class="rule"></div><h3>LE JOURNAL<br>DES BEAUX-ARTS</h3><div class="rule"></div><small>CHRONIQUES D'UN CRITIQUE D'ART FRANÇAIS</small><p>« Chaque tableau raconte une histoire. Chaque couleur exprime une émotion. Chaque artiste nous invite à regarder le monde autrement. »</p><div class="rule"></div><p style="text-align:right;font-style:italic">— Émile Laurent<br><small>Critique d'art fictif</small></p></div><div><div class="eyebrow">04 / Archives de Paris</div><h2 class="section-title">Une lettre<br>du passé.</h2><p class="section-intro">Inspired by <em>Le Journal des Beaux-Arts</em>, our nineteenth-century critic guides you through artists who challenged tradition and reshaped painting. The fictional journal presents a retrospective exhibition, not a historical publication.</p><a href="#collection" class="button" style="display:inline-block;margin-top:26px">Revisit the collection ↗</a></div></section>
+<section id="journal" class="section journal"><div class="paper"><small>ÉDITION SPÉCIALE · PARIS · 1890</small><div class="rule"></div><h3>LE JOURNAL<br>DES BEAUX-ARTS</h3><div class="rule"></div><small>CHRONIQUES D'UN CRITIQUE D'ART FRANÇAIS</small><p>« Chaque tableau raconte une histoire. Chaque couleur exprime une émotion. Chaque artiste nous invite à regarder le monde autrement. »</p><div class="rule"></div><p style="text-align:right;font-style:italic">— Émile Laurent<br><small>Critique d'art fictif</small></p></div><div><div class="eyebrow">04 / Archives de Paris</div><h2 class="section-title">Une lettre<br>du passé.</h2><p class="section-intro">Inspired by <em>Le Journal des Beaux-Arts</em>, our nineteenth-century critic guides you through artists who challenged tradition and reshaped painting. The fictional journal presents a retrospective exhibition, not a historical publication.</p><a href="#eras" class="button" style="display:inline-block;margin-top:26px">Revisit the collection ↗</a></div></section>
 <section id="quiz" class="section quiz"><div class="eyebrow">05 / Atelier interactif</div><h2 class="section-title">Connaissez-vous l'art ?</h2><p class="section-intro">A little challenge before you leave the museum.</p><div class="quiz-box"><div class="eyebrow" id="quizCount"></div><div class="quiz-q" id="quizQuestion"></div><div class="answers" id="answers"></div><div class="quiz-msg" id="quizMessage"></div><button class="button" id="quizNext" hidden>Next question →</button></div></section></main>
 <footer class="footer"><span>✳ LE MUSÉE DES BEAUX-ARTS</span><span>PROJET DE LANGUE FRANÇAISE · 2026</span><span>ARTWORKS: WIKIMEDIA COMMONS · VOICE: WEB SPEECH API</span></footer>
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Zoomed artwork"><button class="close" id="closeViewer" aria-label="Close image">×</button><img id="viewerImage" alt="Painting, enlarged"><div class="viewer-caption" id="viewerCaption"></div><div style="color:#8e8494;font-size:11px;margin-top:12px">Click image to zoom · ESC to close</div></div>
@@ -199,4 +318,157 @@ document.addEventListener('error',e=>{
     e.target.dataset.fallback='true';e.target.src=fallbackArt;
   }
 },true);
+</script><script>
+(function(){
+const extra=[
+[1,'La Mort de Sardanapale','1827','Death of Sardanapalus by Eugène Delacroix.jpg'],
+[0,'La Promenade (Femme à l’ombrelle)','1875','Women with umbrella (1875) by Claude Monet.jpg'],
+[3,'Les Deux Sœurs','1881','Renoir - The Two Sisters, On the Terrace.jpg'],
+[6,'Les Tournesols','1888–1889','Vincent Willem van Gogh, Dutch - Sunflowers - Google Art Project.jpg']
+];
+extra.forEach(([idx,title,year,file])=>artists[idx].works.push([title,year,file]));
+const rooms=[
+{title:'Le Romantisme',period:'SALLE I · 1800–1850',desc:'Emotion, dramatic history and imagination. Eugène Delacroix turns painting into an expression of passion and freedom.',people:[1]},
+{title:'La Modernité',period:'SALLE II · 1850–1870',desc:'Paris and everyday life enter the canvas. Édouard Manet challenges the conventions of academic painting.',people:[2]},
+{title:"L’Impressionnisme",period:'SALLE III · 1870–1890',desc:'Light dances across the surface of the canvas. Monet, Renoir and Degas capture a world in motion.',people:[0,3,4]},
+{title:'Le Postimpressionnisme',period:'SALLE IV · 1880–1905',desc:'Beyond appearances, painters shape reality through expressive colour, emotion and structure. Cézanne and Van Gogh.',people:[5,6]}
+];
+let activeEra=0,activeWork=0,works=[];
+const el=id=>document.getElementById(id);
+function renderEra(index,scroll=false){
+ activeEra=(index+rooms.length)%rooms.length;const room=rooms[activeEra];
+ document.querySelectorAll('.era-door').forEach((b,i)=>{b.classList.toggle('selected',i===activeEra);b.setAttribute('aria-pressed',i===activeEra?'true':'false')});
+ el('eraMeta').textContent=room.period;el('eraTitle').textContent=room.title;el('eraDescription').textContent=room.desc;el('eraCount').textContent=String(activeEra+1).padStart(2,'0')+' / 04';
+ works=room.people.flatMap(idx=>artists[idx].works.map((work,wi)=>({idx,wi,work,artist:artists[idx]})));activeWork=0;
+ el('eraArtworkCount').textContent=works.length+' TABLEAUX';
+ el('eraArtworks').innerHTML='';
+ works.forEach((entry,i)=>{const b=document.createElement('button');b.className='era-artwork';b.setAttribute('aria-label','Examine '+entry.work[0]+' by '+entry.artist.name);b.innerHTML='<span class="era-artwork-image"></span><strong></strong><small></small>';
+ const img=document.createElement('img');img.src=commons(entry.work[2],500);img.loading='lazy';img.alt=entry.work[0]+' by '+entry.artist.name;
+ b.querySelector('.era-artwork-image').appendChild(img);b.querySelector('strong').textContent=entry.work[0];b.querySelector('small').textContent=entry.artist.name+' · '+entry.work[1];
+ b.onclick=()=>showWork(i);el('eraArtworks').appendChild(b)});
+ showWork(0);
+ const view=el('eraTour');view.classList.remove('era-scene-transition');void view.offsetWidth;view.classList.add('era-scene-transition');
+ if(scroll)view.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}
+function showWork(i){
+ activeWork=i;const entry=works[i];if(!entry)return;
+ const old=el('eraFeaturedImage'),newSrc=commons(entry.work[2],1200);old.style.opacity='.15';
+ setTimeout(()=>{old.src=newSrc;old.alt=entry.work[0]+' by '+entry.artist.name;old.style.opacity='1'},120);
+ el('eraFeaturedArtist').textContent=entry.artist.name;el('eraFeaturedTitle').textContent=entry.work[0];el('eraFeaturedDate').textContent=entry.work[1];
+ document.querySelectorAll('.era-artwork').forEach((b,n)=>b.classList.toggle('active',n===i));
+ const note=el('eraArtistNote');note.innerHTML='<span class="era-meta">À PROPOS DE L’ARTISTE</span><h4></h4><p></p><button>Explore the artist’s complete story ↗</button>';
+ note.querySelector('h4').textContent=entry.artist.name;note.querySelector('p').textContent=entry.artist.bio;
+ note.querySelector('button').onclick=()=>{artistIndex=entry.idx;workIndex=entry.wi;renderRoom();el('room').scrollIntoView({behavior:'smooth'})};
+}
+document.querySelectorAll('.era-door').forEach(b=>b.onclick=()=>{const idx=Number(b.dataset.era);const action=()=>renderEra(idx,true);if(document.startViewTransition&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(action);else action()});
+el('eraPrevious').onclick=()=>renderEra(activeEra-1);el('eraNext').onclick=()=>renderEra(activeEra+1);
+el('eraFeaturedZoom').onclick=()=>{const entry=works[activeWork];artistIndex=entry.idx;workIndex=entry.wi;openViewer()};
+el('eraFeaturedImage').onclick=()=>el('eraFeaturedZoom').click();el('eraFeaturedImage').style.cursor='zoom-in';
+renderEra(0);
+})();
+</script><script>
+(function(){
+ const rail=document.getElementById('eraDoors');if(!rail)return;
+ const originals=[...rail.querySelectorAll('.era-door')];if(originals.length!==4)return;
+ const less=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const heading=document.createElement('div');heading.className='era-rail-header';
+ heading.innerHTML='<span class="era-rail-kicker">LES ÉPOQUES EN MOUVEMENT — CHOISISSEZ UNE SALLE</span><span class="era-meta">DÉFILEMENT AUTOMATIQUE ✦</span>';
+ rail.before(heading);
+ const progress=document.createElement('div');progress.className='era-progress';progress.innerHTML='<span></span>';rail.after(progress);
+ rail.style.scrollSnapType='none';rail.style.scrollBehavior='auto';
+ // Duplicate the original four era cards to create a seamless infinite panorama.
+ originals.forEach(b=>{const copy=b.cloneNode(true);copy.classList.remove('selected');copy.setAttribute('aria-label',b.querySelector('.era-door-title').textContent+' — enter gallery');rail.appendChild(copy)});
+ const setWidth=()=>rail.children[4].offsetLeft-rail.children[0].offsetLeft;
+ let stopped=false,gestureUntil=0,last=0,busy=false;
+ const pointerPause=()=>{gestureUntil=performance.now()+2500};
+ rail.addEventListener('pointerenter',()=>stopped=true);
+ rail.addEventListener('pointerleave',()=>{stopped=false;pointerPause()});
+ rail.addEventListener('focusin',()=>stopped=true);
+ rail.addEventListener('focusout',()=>{stopped=false;pointerPause()});
+ rail.addEventListener('touchstart',()=>{stopped=true;pointerPause()},{passive:true});
+ rail.addEventListener('touchend',()=>{stopped=false;pointerPause()},{passive:true});
+ rail.addEventListener('wheel',pointerPause,{passive:true});
+ rail.addEventListener('scroll',()=>{
+  const span=setWidth();if(!span)return;
+  progress.firstElementChild.style.transform='translateX('+((rail.scrollLeft%span)/span*310)+'%)';
+ },{passive:true});
+ function glide(t){
+  if(!last)last=t;
+  const dt=Math.min(.07,(t-last)/1000);last=t;
+  const rect=rail.getBoundingClientRect();
+  if(!less.matches&&!stopped&&!busy&&t>gestureUntil&&rect.bottom>0&&rect.top<innerHeight){
+   const width=setWidth();
+   if(width>0){
+    rail.scrollLeft+=47*dt;
+    if(rail.scrollLeft>=width)rail.scrollLeft-=width;
+   }
+  }
+  requestAnimationFrame(glide);
+ }requestAnimationFrame(glide);
+ const screen=document.createElement('div');screen.className='era-cinematic';screen.setAttribute('aria-hidden','true');
+ const image=document.createElement('img');image.className='era-cinematic-img';
+ const title=document.createElement('div');title.className='era-cinematic-label';
+ screen.append(image,title);document.body.appendChild(screen);
+ const openEra=async button=>{
+  if(busy)return;
+  const index=Number(button.dataset.era);if(!Number.isInteger(index)||index<0||index>3)return;
+  const original=originals[index];
+  if(less.matches){original.onclick();return}
+  busy=true;
+  const source=button.querySelector('.era-door-image img');
+  const from=source.getBoundingClientRect();
+  if(from.width<1||from.height<1){original.onclick();busy=false;return}
+  image.src=source.currentSrc||source.src;image.alt=source.alt;
+  title.textContent=button.querySelector('.era-door-title').textContent;
+  screen.style.display='grid';screen.style.opacity='1';
+  Object.assign(image.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});
+  const targetWidth=Math.min(innerWidth*.88,1100),targetHeight=Math.min(innerHeight*.78,750);
+  const left=(innerWidth-targetWidth)/2,top=(innerHeight-targetHeight)/2;
+  const shade=screen.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease-out',fill:'forwards'});
+  const zoom=image.animate([
+   {left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px',filter:'brightness(.82) saturate(.8)',borderWidth:'9px'},
+   {left:left+'px',top:top+'px',width:targetWidth+'px',height:targetHeight+'px',filter:'brightness(1) saturate(1.1)',borderWidth:'16px'}
+  ],{duration:1250,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
+  const label=title.animate([{opacity:0,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,delay:460,fill:'forwards'});
+  try{
+   await zoom.finished;
+   original.onclick();
+   await screen.animate([{opacity:1},{opacity:0}],{duration:680,delay:280,easing:'cubic-bezier(.22,1,.36,1)',fill:'forwards'}).finished;
+  }catch(e){}finally{
+   screen.style.display='none';screen.style.opacity='0';zoom.cancel();shade.cancel();label.cancel();busy=false;gestureUntil=performance.now()+2800;
+  }
+ };
+ rail.addEventListener('click',e=>{
+  const button=e.target.closest('.era-door');if(!button||!rail.contains(button))return;
+  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();openEra(button);
+ },true);
+ // Scroll-driven section entrances and a delicate zoom-out on the feature artwork.
+ let observing;
+ if('IntersectionObserver' in window){
+  observing=new IntersectionObserver(entries=>{
+   for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-visible');observing.unobserve(entry.target)}
+  },{threshold:.08,rootMargin:'0px 0px -25px 0px'});
+ }
+ const register=()=>{
+  document.querySelectorAll('.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper').forEach(node=>{
+   if(node.dataset.reveal)return;
+   node.dataset.reveal='1';if(less.matches){node.classList.add('is-visible');return}
+   node.classList.add('scroll-reveal');observing?.observe(node);
+  });
+ };
+ register();
+ new MutationObserver(register).observe(document.getElementById('eraArtworks'),{childList:true});
+ const feature=document.getElementById('eraFeaturedImage');
+ let scrollPending=false;
+ const parallax=()=>{
+  scrollPending=false;
+  if(less.matches)return;
+  const section=document.getElementById('eraTour').getBoundingClientRect();
+  const progress=Math.max(0,Math.min(1,(innerHeight-section.top)/(innerHeight+section.height)));
+  const scale=1.075-.075*progress;
+  feature.style.transform='scale('+scale.toFixed(3)+') translateY('+((1-progress)*10).toFixed(1)+'px)';
+ };
+ addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(parallax)}},{passive:true});
+ parallax();
+})();
 </script></body></html>
