@@ -188,6 +188,33 @@ body:before{content:'';position:fixed;inset:0;z-index:35;pointer-events:none;opa
 .era-gallery-view{position:relative}
 .era-gallery-view:before{content:'';position:absolute;inset:-12px;pointer-events:none;border-top:1px solid #a37a47;opacity:.5}
 @media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}.era-doors{scroll-behavior:auto!important}}
+
+/* Scroll-controlled cinematic era sequence: movement only follows the visitor */
+.era-doors{display:flex!important;overflow-x:hidden!important;overflow-y:visible;scroll-behavior:auto!important;scroll-snap-type:none!important;gap:clamp(16px,2vw,32px)!important;padding:18px 3vw 35px!important;touch-action:pan-y}
+.era-door{flex:0 0 clamp(290px,38vw,500px);min-height:440px;transform:scale(var(--era-scale,1)) translateY(var(--era-lift,0px))!important;opacity:var(--era-opacity,1);filter:brightness(var(--era-light,1));transition:background .3s,border-color .3s,box-shadow .3s,filter .3s;will-change:transform,opacity}
+.era-door:hover{box-shadow:0 25px 50px #44281d6b!important}
+.era-door-image{height:clamp(235px,25vw,350px)!important}
+.era-scroll-stage{height:330vh;position:relative;margin:12px calc(-6.5vw) 0}
+.era-scroll-stick{position:sticky;top:0;height:100svh;min-height:570px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at 50% 50%,#eddcc2,#dfc7a6 88%);border-top:1px solid #bd9e70;border-bottom:1px solid #b69b73}
+.era-scroll-stick:before{content:'✧';position:absolute;right:2%;top:3%;font:240px 'Cormorant Garamond',serif;color:#6d473511;pointer-events:none}
+.era-scroll-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;padding:12px 7vw 20px;position:relative}
+.era-scroll-heading h3{font:500 clamp(31px,4vw,63px)/1 'Cormorant Garamond',serif;margin:0;color:#5e2631;letter-spacing:-.04em}
+.era-scroll-heading span{font:11px 'Cinzel',serif;color:#866443;letter-spacing:.13em;white-space:nowrap}
+.era-scroll-counter{font:14px 'Cinzel',serif;color:#6b4431;display:flex;justify-content:space-between;padding:0 7vw;align-items:center;letter-spacing:.1em}
+.era-scroll-line{height:2px;background:#b99a6d;position:relative;margin:18px 7vw 0}
+.era-scroll-line:after{content:'';position:absolute;inset:0 auto 0 0;background:#672e3a;width:var(--progress,0%);transition:width .075s linear}
+.era-scroll-instruction{font:12px 'Cinzel',serif;color:#715339;letter-spacing:.1em;padding:16px 7vw;text-align:center}
+.era-tour{scroll-margin-top:100px}
+.era-cinematic{position:fixed;inset:0;z-index:9999;pointer-events:none;background:#211410f8;display:none;opacity:0;place-items:center}
+.era-cinematic:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,#98784940,transparent 74%)}
+.era-cinematic-img{position:fixed;object-fit:cover;border:11px ridge #af874c;box-shadow:0 30px 110px #000b}
+.era-cinematic-label{position:absolute;bottom:7%;color:#f3dfc2;font:italic clamp(38px,6vw,92px) 'Cormorant Garamond',serif;letter-spacing:-.03em;opacity:0}
+.scroll-reveal{opacity:0;transform:translate3d(0,44px,0);filter:blur(6px);transition:opacity .95s cubic-bezier(.16,1,.3,1),transform 1.15s cubic-bezier(.16,1,.3,1),filter .95s}
+.scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+.era-featured-picture{overflow:hidden}.era-featured-picture img{will-change:transform}
+@media(max-width:800px){.era-scroll-stage{height:280vh}.era-door{flex-basis:74vw;min-height:410px}.era-scroll-stick{min-height:520px}.era-scroll-heading{align-items:start}.era-scroll-heading span{white-space:normal;text-align:right}}
+@media(max-width:520px){.era-scroll-stage{height:245vh}.era-door{flex-basis:80vw;min-height:370px}.era-door-image{height:230px!important}.era-scroll-heading{padding:0 6vw 20px}.era-scroll-heading h3{font-size:38px}.era-scroll-heading span{font-size:9px}.era-scroll-counter{padding:0 6vw}.era-scroll-line{margin-left:6vw;margin-right:6vw}.era-scroll-instruction{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.era-door{transform:none!important;opacity:1!important;filter:none!important}.scroll-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.era-scroll-stage{height:auto!important}.era-scroll-stick{position:relative;height:auto;min-height:0}.era-doors{overflow-x:auto!important;touch-action:pan-x}}
 </style></head><body>
 <header class="topbar"><a href="#home" class="brand"><i>✳</i> LE MUSÉE <span style="color:#b198ff">DES BEAUX-ARTS</span></a><nav class="nav"><a href="#eras">La collection</a><a href="#room">Galeries</a><a href="#timeline">Mouvements</a><a href="#journal">Le journal</a><a href="#quiz" class="button" style="color:white">Explorer ↗</a></nav></header>
 <main><section id="home" class="hero"><div class="fadein"><div class="eyebrow">✧ Paris · une expérience immersive</div><h1>LE SALON<br>DES <em>ARTS.</em></h1><p>Step inside a nineteenth-century French salon, where gilded paintings, handwritten chronicles and the great masters come alive.</p><div class="cta"><a class="button" href="#eras">Enter the exhibition ↗</a><a class="textlink" href="#journal">Discover the journal</a></div></div><div class="hero-visual" aria-hidden="true"><div class="halo"></div><div class="halo two"></div><div class="hero-portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet,_Impression,_soleil_levant.jpg?width=800" alt=""></div><div class="floating-dot"></div><div class="floating-dot small"></div></div><span class="scrolldown">↓ SCROLL TO EXPLORE</span></section><div class="metrics"><div><strong>07</strong><span>Artistes</span></div><div><strong>04</strong><span>Mouvements</span></div><div><strong>14</strong><span>Chefs-d'œuvre</span></div><div><strong>XIXᵉ</strong><span>Siècle</span></div></div>
@@ -368,107 +395,71 @@ renderEra(0);
 })();
 </script><script>
 (function(){
- const rail=document.getElementById('eraDoors');if(!rail)return;
- const originals=[...rail.querySelectorAll('.era-door')];if(originals.length!==4)return;
- const less=window.matchMedia('(prefers-reduced-motion: reduce)');
- const heading=document.createElement('div');heading.className='era-rail-header';
- heading.innerHTML='<span class="era-rail-kicker">LES ÉPOQUES EN MOUVEMENT — CHOISISSEZ UNE SALLE</span><span class="era-meta">DÉFILEMENT AUTOMATIQUE ✦</span>';
- rail.before(heading);
- const progress=document.createElement('div');progress.className='era-progress';progress.innerHTML='<span></span>';rail.after(progress);
- rail.style.scrollSnapType='none';rail.style.scrollBehavior='auto';
- // Duplicate the original four era cards to create a seamless infinite panorama.
- originals.forEach(b=>{const copy=b.cloneNode(true);copy.classList.remove('selected');copy.setAttribute('aria-label',b.querySelector('.era-door-title').textContent+' — enter gallery');rail.appendChild(copy)});
- const setWidth=()=>rail.children[4].offsetLeft-rail.children[0].offsetLeft;
- let stopped=false,gestureUntil=0,last=0,busy=false;
- const pointerPause=()=>{gestureUntil=performance.now()+2500};
- rail.addEventListener('pointerenter',()=>stopped=true);
- rail.addEventListener('pointerleave',()=>{stopped=false;pointerPause()});
- rail.addEventListener('focusin',()=>stopped=true);
- rail.addEventListener('focusout',()=>{stopped=false;pointerPause()});
- rail.addEventListener('touchstart',()=>{stopped=true;pointerPause()},{passive:true});
- rail.addEventListener('touchend',()=>{stopped=false;pointerPause()},{passive:true});
- rail.addEventListener('wheel',pointerPause,{passive:true});
- rail.addEventListener('scroll',()=>{
-  const span=setWidth();if(!span)return;
-  progress.firstElementChild.style.transform='translateX('+((rail.scrollLeft%span)/span*310)+'%)';
- },{passive:true});
- function glide(t){
-  if(!last)last=t;
-  const dt=Math.min(.07,(t-last)/1000);last=t;
-  const rect=rail.getBoundingClientRect();
-  if(!less.matches&&!stopped&&!busy&&t>gestureUntil&&rect.bottom>0&&rect.top<innerHeight){
-   const width=setWidth();
-   if(width>0){
-    rail.scrollLeft+=47*dt;
-    if(rail.scrollLeft>=width)rail.scrollLeft-=width;
-   }
-  }
-  requestAnimationFrame(glide);
- }requestAnimationFrame(glide);
- const screen=document.createElement('div');screen.className='era-cinematic';screen.setAttribute('aria-hidden','true');
- const image=document.createElement('img');image.className='era-cinematic-img';
- const title=document.createElement('div');title.className='era-cinematic-label';
- screen.append(image,title);document.body.appendChild(screen);
- const openEra=async button=>{
-  if(busy)return;
-  const index=Number(button.dataset.era);if(!Number.isInteger(index)||index<0||index>3)return;
-  const original=originals[index];
-  if(less.matches){original.onclick();return}
-  busy=true;
-  const source=button.querySelector('.era-door-image img');
-  const from=source.getBoundingClientRect();
-  if(from.width<1||from.height<1){original.onclick();busy=false;return}
-  image.src=source.currentSrc||source.src;image.alt=source.alt;
-  title.textContent=button.querySelector('.era-door-title').textContent;
-  screen.style.display='grid';screen.style.opacity='1';
-  Object.assign(image.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});
-  const targetWidth=Math.min(innerWidth*.88,1100),targetHeight=Math.min(innerHeight*.78,750);
-  const left=(innerWidth-targetWidth)/2,top=(innerHeight-targetHeight)/2;
-  const shade=screen.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease-out',fill:'forwards'});
-  const zoom=image.animate([
-   {left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px',filter:'brightness(.82) saturate(.8)',borderWidth:'9px'},
-   {left:left+'px',top:top+'px',width:targetWidth+'px',height:targetHeight+'px',filter:'brightness(1) saturate(1.1)',borderWidth:'16px'}
-  ],{duration:1250,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
-  const label=title.animate([{opacity:0,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,delay:460,fill:'forwards'});
-  try{
-   await zoom.finished;
-   original.onclick();
-   await screen.animate([{opacity:1},{opacity:0}],{duration:680,delay:280,easing:'cubic-bezier(.22,1,.36,1)',fill:'forwards'}).finished;
-  }catch(e){}finally{
-   screen.style.display='none';screen.style.opacity='0';zoom.cancel();shade.cancel();label.cancel();busy=false;gestureUntil=performance.now()+2800;
-  }
- };
- rail.addEventListener('click',e=>{
-  const button=e.target.closest('.era-door');if(!button||!rail.contains(button))return;
-  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();openEra(button);
- },true);
- // Scroll-driven section entrances and a delicate zoom-out on the feature artwork.
- let observing;
- if('IntersectionObserver' in window){
-  observing=new IntersectionObserver(entries=>{
-   for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-visible');observing.unobserve(entry.target)}
-  },{threshold:.08,rootMargin:'0px 0px -25px 0px'});
- }
- const register=()=>{
-  document.querySelectorAll('.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper').forEach(node=>{
-   if(node.dataset.reveal)return;
-   node.dataset.reveal='1';if(less.matches){node.classList.add('is-visible');return}
-   node.classList.add('scroll-reveal');observing?.observe(node);
-  });
- };
- register();
- new MutationObserver(register).observe(document.getElementById('eraArtworks'),{childList:true});
- const feature=document.getElementById('eraFeaturedImage');
- let scrollPending=false;
- const parallax=()=>{
-  scrollPending=false;
-  if(less.matches)return;
-  const section=document.getElementById('eraTour').getBoundingClientRect();
-  const progress=Math.max(0,Math.min(1,(innerHeight-section.top)/(innerHeight+section.height)));
-  const scale=1.075-.075*progress;
-  feature.style.transform='scale('+scale.toFixed(3)+') translateY('+((1-progress)*10).toFixed(1)+'px)';
- };
- addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(parallax)}},{passive:true});
- parallax();
+const rail=document.getElementById('eraDoors');if(!rail)return;
+const cards=[...rail.querySelectorAll('.era-door')];if(cards.length!==4)return;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+const stage=document.createElement('div');stage.className='era-scroll-stage';
+const stick=document.createElement('div');stick.className='era-scroll-stick';
+const head=document.createElement('div');head.className='era-scroll-heading';
+head.innerHTML='<h3>Traversez les époques.</h3><span>QUATRE SALLES · UN SIÈCLE DE PEINTURE</span>';
+const counter=document.createElement('div');counter.className='era-scroll-counter';counter.innerHTML='<span id="scrollEraTitle">I · ROMANTISME</span><span id="scrollEraNumber">01 / 04</span>';
+const line=document.createElement('div');line.className='era-scroll-line';
+const hint=document.createElement('div');hint.className='era-scroll-instruction';hint.textContent='↓ SCROLL TO TRAVEL THROUGH THE ERAS · SELECT A ROOM TO ENTER';
+rail.before(stage);stage.append(stick);stick.append(head,rail,counter,line,hint);
+let frame=false,sceneBusy=false;
+function update(){
+ frame=false;
+ if(reduce.matches)return;
+ const rect=stage.getBoundingClientRect();
+ const range=Math.max(1,stage.offsetHeight-innerHeight);
+ const progress=Math.max(0,Math.min(1,-rect.top/range));
+ const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+ // Linked directly to document scroll: no timed or autonomous scrolling.
+ rail.scrollLeft=max*progress;
+ let nearest=0,shortest=Infinity;
+ cards.forEach((card,i)=>{
+  const c=card.offsetLeft-rail.offsetLeft+card.offsetWidth/2-rail.scrollLeft;
+  const dist=Math.abs(c-rail.clientWidth/2);
+  if(dist<shortest){nearest=i;shortest=dist}
+  const d=Math.min(1.1,dist/Math.max(1,rail.clientWidth*.9));
+  card.style.setProperty('--era-scale',(1-.085*d).toFixed(3));
+  card.style.setProperty('--era-lift',(14*d).toFixed(1)+'px');
+  card.style.setProperty('--era-opacity',(1-.20*d).toFixed(3));
+  card.style.setProperty('--era-light',(1-.14*d).toFixed(3));
+ });
+ document.getElementById('scrollEraTitle').textContent=['I · ROMANTISME','II · MODERNITÉ','III · IMPRESSIONNISME','IV · POSTIMPRESSIONNISME'][nearest];
+ document.getElementById('scrollEraNumber').textContent=String(nearest+1).padStart(2,'0')+' / 04';
+ line.style.setProperty('--progress',(progress*100).toFixed(2)+'%');
+}
+function tick(){if(!frame){frame=true;requestAnimationFrame(update)}}
+addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick,{passive:true});tick();
+const overlay=document.createElement('div');overlay.className='era-cinematic';overlay.setAttribute('aria-hidden','true');
+const art=document.createElement('img');art.className='era-cinematic-img';const caption=document.createElement('div');caption.className='era-cinematic-label';overlay.append(art,caption);document.body.appendChild(overlay);
+const oldClicks=cards.map(c=>c.onclick);
+async function enter(card,index){
+ if(sceneBusy)return;
+ if(reduce.matches){oldClicks[index]?.call(card);return}
+ sceneBusy=true;const source=card.querySelector('.era-door-image img');
+ const box=source.getBoundingClientRect();if(box.width<1){sceneBusy=false;oldClicks[index]?.call(card);return}
+ art.src=source.currentSrc||source.src;art.alt=source.alt;caption.textContent=card.querySelector('.era-door-title').textContent;
+ overlay.style.display='grid';overlay.style.opacity='1';
+ Object.assign(art.style,{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px'});
+ const w=Math.min(innerWidth*.9,1120),h=Math.min(innerHeight*.78,740),x=(innerWidth-w)/2,y=(innerHeight-h)/2;
+ const shade=overlay.animate([{opacity:0},{opacity:1}],{duration:350,fill:'forwards'});
+ const zoom=art.animate([{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px',filter:'brightness(.75)'},{left:x+'px',top:y+'px',width:w+'px',height:h+'px',filter:'brightness(1)'}],{duration:1150,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
+ const label=caption.animate([{opacity:0,transform:'translateY(25px)'},{opacity:1,transform:'translateY(0px)'}],{delay:330,duration:620,fill:'forwards'});
+ try{await zoom.finished;oldClicks[index]?.call(card);await overlay.animate([{opacity:1},{opacity:0}],{duration:580,delay:160,easing:'ease-out',fill:'forwards'}).finished}
+ catch(err){oldClicks[index]?.call(card)}
+ finally{overlay.style.display='none';overlay.style.opacity='0';shade.cancel();zoom.cancel();label.cancel();sceneBusy=false;tick()}
+}
+cards.forEach((c,i)=>{c.onclick=null;c.addEventListener('click',e=>{e.preventDefault();enter(c,i)})});
+if('IntersectionObserver' in window){
+ const io=new IntersectionObserver(items=>items.forEach(item=>{if(item.isIntersecting){item.target.classList.add('is-visible');io.unobserve(item.target)}}),{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+ const register=()=>document.querySelectorAll('.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper').forEach(node=>{if(node.dataset.reveal)return;node.dataset.reveal='1';if(!reduce.matches){node.classList.add('scroll-reveal');io.observe(node)}});
+ register();new MutationObserver(register).observe(document.getElementById('eraArtworks'),{childList:true});
+}
+const feature=document.getElementById('eraFeaturedImage');
+function parallax(){if(reduce.matches)return;const rect=document.getElementById('eraTour').getBoundingClientRect();const p=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));feature.style.transform='scale('+(1.07-p*.07)+') translateY('+((1-p)*10)+'px)'}
+addEventListener('scroll',parallax,{passive:true});parallax();
 })();
 </script></body></html>
