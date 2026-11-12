@@ -215,6 +215,21 @@ body:before{content:'';position:fixed;inset:0;z-index:35;pointer-events:none;opa
 @media(max-width:800px){.era-scroll-stage{height:280vh}.era-door{flex-basis:74vw;min-height:410px}.era-scroll-stick{min-height:520px}.era-scroll-heading{align-items:start}.era-scroll-heading span{white-space:normal;text-align:right}}
 @media(max-width:520px){.era-scroll-stage{height:245vh}.era-door{flex-basis:80vw;min-height:370px}.era-door-image{height:230px!important}.era-scroll-heading{padding:0 6vw 20px}.era-scroll-heading h3{font-size:38px}.era-scroll-heading span{font-size:9px}.era-scroll-counter{padding:0 6vw}.era-scroll-line{margin-left:6vw;margin-right:6vw}.era-scroll-instruction{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.era-door{transform:none!important;opacity:1!important;filter:none!important}.scroll-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.era-scroll-stage{height:auto!important}.era-scroll-stick{position:relative;height:auto;min-height:0}.era-doors{overflow-x:auto!important;touch-action:pan-x}}
+
+/* MANUAL gallery interaction — no scroll-linked or autoplay carousel */
+.era-scroll-stage{height:auto!important;position:relative!important;margin:12px calc(-6.5vw) 0!important}
+.era-scroll-stick{position:relative!important;top:auto!important;height:auto!important;min-height:0!important;overflow:visible!important;display:block!important;padding:55px 0 30px}
+.era-doors{overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-behavior:smooth!important;overscroll-behavior-x:contain!important;touch-action:pan-x!important;cursor:grab;display:flex!important;gap:24px!important;padding:22px max(7vw,32px) 40px!important;scrollbar-width:thin;scrollbar-color:#a27c48 transparent}
+.era-doors:active{cursor:grabbing}
+.era-doors::-webkit-scrollbar{height:6px}.era-doors::-webkit-scrollbar-thumb{background:#9b7847;border-radius:8px}
+.era-door{flex:0 0 clamp(285px,38vw,490px)!important;transform:none!important;opacity:1!important;filter:none!important;scroll-snap-align:center;transition:box-shadow .3s,background .3s!important}
+.era-door.selected,.era-door:hover{transform:none!important}
+.era-scroll-line{margin-top:12px}
+.era-scroll-instruction{font-family:'Cinzel',serif}
+.era-scroll-heading{padding:0 7vw 25px}
+@media(max-width:850px){.era-scroll-stage{height:auto!important}.era-scroll-stick{position:relative!important;height:auto!important}.era-door{flex-basis:72vw!important}}
+@media(max-width:520px){.era-doors{padding:20px 6vw 35px!important;gap:15px!important}.era-door{flex-basis:83vw!important}.era-scroll-heading{padding:0 6vw 20px}}
+@media(prefers-reduced-motion:reduce){.era-doors{scroll-behavior:auto!important}}
 </style></head><body>
 <header class="topbar"><a href="#home" class="brand"><i>✳</i> LE MUSÉE <span style="color:#b198ff">DES BEAUX-ARTS</span></a><nav class="nav"><a href="#eras">La collection</a><a href="#room">Galeries</a><a href="#timeline">Mouvements</a><a href="#journal">Le journal</a><a href="#quiz" class="button" style="color:white">Explorer ↗</a></nav></header>
 <main><section id="home" class="hero"><div class="fadein"><div class="eyebrow">✧ Paris · une expérience immersive</div><h1>LE SALON<br>DES <em>ARTS.</em></h1><p>Step inside a nineteenth-century French salon, where gilded paintings, handwritten chronicles and the great masters come alive.</p><div class="cta"><a class="button" href="#eras">Enter the exhibition ↗</a><a class="textlink" href="#journal">Discover the journal</a></div></div><div class="hero-visual" aria-hidden="true"><div class="halo"></div><div class="halo two"></div><div class="hero-portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Monet,_Impression,_soleil_levant.jpg?width=800" alt=""></div><div class="floating-dot"></div><div class="floating-dot small"></div></div><span class="scrolldown">↓ SCROLL TO EXPLORE</span></section><div class="metrics"><div><strong>07</strong><span>Artistes</span></div><div><strong>04</strong><span>Mouvements</span></div><div><strong>14</strong><span>Chefs-d'œuvre</span></div><div><strong>XIXᵉ</strong><span>Siècle</span></div></div>
@@ -396,70 +411,89 @@ renderEra(0);
 </script><script>
 (function(){
 const rail=document.getElementById('eraDoors');if(!rail)return;
-const cards=[...rail.querySelectorAll('.era-door')];if(cards.length!==4)return;
-const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+const cards=[...rail.querySelectorAll('.era-door')];
+if(cards.length!==4)return;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const stage=document.createElement('div');stage.className='era-scroll-stage';
 const stick=document.createElement('div');stick.className='era-scroll-stick';
-const head=document.createElement('div');head.className='era-scroll-heading';
-head.innerHTML='<h3>Traversez les époques.</h3><span>QUATRE SALLES · UN SIÈCLE DE PEINTURE</span>';
-const counter=document.createElement('div');counter.className='era-scroll-counter';counter.innerHTML='<span id="scrollEraTitle">I · ROMANTISME</span><span id="scrollEraNumber">01 / 04</span>';
+const heading=document.createElement('div');heading.className='era-scroll-heading';
+heading.innerHTML='<h3>Traversez les époques.</h3><span>QUATRE SALLES · UN SIÈCLE DE PEINTURE</span>';
+const counter=document.createElement('div');counter.className='era-scroll-counter';
+counter.innerHTML='<span id="scrollEraTitle">I · ROMANTISME</span><span id="scrollEraNumber">01 / 04</span>';
 const line=document.createElement('div');line.className='era-scroll-line';
-const hint=document.createElement('div');hint.className='era-scroll-instruction';hint.textContent='↓ SCROLL TO TRAVEL THROUGH THE ERAS · SELECT A ROOM TO ENTER';
-rail.before(stage);stage.append(stick);stick.append(head,rail,counter,line,hint);
-let frame=false,sceneBusy=false;
-function update(){
- frame=false;
- if(reduce.matches)return;
- const rect=stage.getBoundingClientRect();
- const range=Math.max(1,stage.offsetHeight-innerHeight);
- const progress=Math.max(0,Math.min(1,-rect.top/range));
- const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
- // Linked directly to document scroll: no timed or autonomous scrolling.
- rail.scrollLeft=max*progress;
- let nearest=0,shortest=Infinity;
- cards.forEach((card,i)=>{
-  const c=card.offsetLeft-rail.offsetLeft+card.offsetWidth/2-rail.scrollLeft;
-  const dist=Math.abs(c-rail.clientWidth/2);
-  if(dist<shortest){nearest=i;shortest=dist}
-  const d=Math.min(1.1,dist/Math.max(1,rail.clientWidth*.9));
-  card.style.setProperty('--era-scale',(1-.085*d).toFixed(3));
-  card.style.setProperty('--era-lift',(14*d).toFixed(1)+'px');
-  card.style.setProperty('--era-opacity',(1-.20*d).toFixed(3));
-  card.style.setProperty('--era-light',(1-.14*d).toFixed(3));
- });
- document.getElementById('scrollEraTitle').textContent=['I · ROMANTISME','II · MODERNITÉ','III · IMPRESSIONNISME','IV · POSTIMPRESSIONNISME'][nearest];
+const hint=document.createElement('div');hint.className='era-scroll-instruction';
+hint.textContent='DRAG OR SWIPE THE PAINTINGS · SCROLL OVER THE GALLERY TO BROWSE · CLICK TO ENTER';
+rail.before(stage);stage.append(stick);stick.append(heading,rail,counter,line,hint);
+rail.style.scrollSnapType='x mandatory';
+const labels=['I · ROMANTISME','II · MODERNITÉ','III · IMPRESSIONNISME','IV · POSTIMPRESSIONNISME'];
+function updateIndicator(){
+ let nearest=0,dist=Infinity;
+ const center=rail.scrollLeft+rail.clientWidth/2;
+ cards.forEach((card,i)=>{const x=card.offsetLeft-rail.offsetLeft+card.offsetWidth/2;const d=Math.abs(center-x);if(d<dist){dist=d;nearest=i}});
+ document.getElementById('scrollEraTitle').textContent=labels[nearest];
  document.getElementById('scrollEraNumber').textContent=String(nearest+1).padStart(2,'0')+' / 04';
- line.style.setProperty('--progress',(progress*100).toFixed(2)+'%');
+ const max=Math.max(1,rail.scrollWidth-rail.clientWidth);
+ line.style.setProperty('--progress',((rail.scrollLeft/max)*100).toFixed(1)+'%');
 }
-function tick(){if(!frame){frame=true;requestAnimationFrame(update)}}
-addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick,{passive:true});tick();
+rail.addEventListener('scroll',updateIndicator,{passive:true});
+addEventListener('resize',updateIndicator,{passive:true});
+requestAnimationFrame(updateIndicator);
+// Only wheel gestures over the gallery translate to horizontal travel.
+rail.addEventListener('wheel',e=>{
+ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
+  const max=rail.scrollWidth-rail.clientWidth;
+  const dx=e.deltaY;
+  if((dx>0&&rail.scrollLeft>=max-2)||(dx<0&&rail.scrollLeft<=2))return;
+  e.preventDefault();
+  rail.scrollBy({left:dx,behavior:'instant'});
+ }
+},{passive:false});
+// Mouse/pen dragging; touch swiping remains native.
+let pointer=null,originX=0,originScroll=0,dragging=false,preventClickUntil=0;
+rail.addEventListener('pointerdown',e=>{
+ if(e.pointerType==='touch'||e.button!==0)return;
+ pointer=e.pointerId;originX=e.clientX;originScroll=rail.scrollLeft;dragging=false;
+ rail.style.scrollSnapType='none';rail.style.scrollBehavior='auto';
+});
+rail.addEventListener('pointermove',e=>{
+ if(pointer!==e.pointerId)return;
+ const delta=e.clientX-originX;if(Math.abs(delta)>6){dragging=true;rail.scrollLeft=originScroll-delta}
+});
+function endDrag(e){
+ if(pointer!==e.pointerId)return;
+ if(dragging)preventClickUntil=performance.now()+400;
+ pointer=null;setTimeout(()=>{rail.style.scrollSnapType='x mandatory';rail.style.scrollBehavior='smooth'},100);
+}
+rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel',endDrag);
 const overlay=document.createElement('div');overlay.className='era-cinematic';overlay.setAttribute('aria-hidden','true');
-const art=document.createElement('img');art.className='era-cinematic-img';const caption=document.createElement('div');caption.className='era-cinematic-label';overlay.append(art,caption);document.body.appendChild(overlay);
-const oldClicks=cards.map(c=>c.onclick);
-async function enter(card,index){
- if(sceneBusy)return;
- if(reduce.matches){oldClicks[index]?.call(card);return}
- sceneBusy=true;const source=card.querySelector('.era-door-image img');
- const box=source.getBoundingClientRect();if(box.width<1){sceneBusy=false;oldClicks[index]?.call(card);return}
- art.src=source.currentSrc||source.src;art.alt=source.alt;caption.textContent=card.querySelector('.era-door-title').textContent;
+const art=document.createElement('img');art.className='era-cinematic-img';
+const caption=document.createElement('div');caption.className='era-cinematic-label';
+overlay.append(art,caption);document.body.appendChild(overlay);
+const oldClicks=cards.map(c=>c.onclick);let busy=false;
+async function enter(card,i){
+ if(busy)return;
+ if(reduced.matches){oldClicks[i]?.call(card);return}
+ const source=card.querySelector('.era-door-image img'),box=source.getBoundingClientRect();
+ if(!box.width){oldClicks[i]?.call(card);return}
+ busy=true;art.src=source.currentSrc||source.src;art.alt=source.alt;caption.textContent=card.querySelector('.era-door-title').textContent;
  overlay.style.display='grid';overlay.style.opacity='1';
  Object.assign(art.style,{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px'});
- const w=Math.min(innerWidth*.9,1120),h=Math.min(innerHeight*.78,740),x=(innerWidth-w)/2,y=(innerHeight-h)/2;
- const shade=overlay.animate([{opacity:0},{opacity:1}],{duration:350,fill:'forwards'});
- const zoom=art.animate([{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px',filter:'brightness(.75)'},{left:x+'px',top:y+'px',width:w+'px',height:h+'px',filter:'brightness(1)'}],{duration:1150,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
- const label=caption.animate([{opacity:0,transform:'translateY(25px)'},{opacity:1,transform:'translateY(0px)'}],{delay:330,duration:620,fill:'forwards'});
- try{await zoom.finished;oldClicks[index]?.call(card);await overlay.animate([{opacity:1},{opacity:0}],{duration:580,delay:160,easing:'ease-out',fill:'forwards'}).finished}
- catch(err){oldClicks[index]?.call(card)}
- finally{overlay.style.display='none';overlay.style.opacity='0';shade.cancel();zoom.cancel();label.cancel();sceneBusy=false;tick()}
+ const w=Math.min(innerWidth*.9,1120),hh=Math.min(innerHeight*.78,740);
+ const x=(innerWidth-w)/2,y=(innerHeight-hh)/2;
+ const shade=overlay.animate([{opacity:0},{opacity:1}],{duration:320,fill:'forwards'});
+ const zoom=art.animate([{left:box.left+'px',top:box.top+'px',width:box.width+'px',height:box.height+'px',filter:'brightness(.82)'},{left:x+'px',top:y+'px',width:w+'px',height:hh+'px',filter:'brightness(1)'}],{duration:1100,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'});
+ const lbl=caption.animate([{opacity:0,transform:'translateY(26px)'},{opacity:1,transform:'translateY(0)'}],{delay:320,duration:620,fill:'forwards'});
+ let opened=false;
+ try{await zoom.finished;oldClicks[i]?.call(card);opened=true;await overlay.animate([{opacity:1},{opacity:0}],{duration:570,delay:120,fill:'forwards'}).finished}
+ catch(err){if(!opened)oldClicks[i]?.call(card)}
+ finally{overlay.style.display='none';overlay.style.opacity='0';shade.cancel();zoom.cancel();lbl.cancel();busy=false}
 }
-cards.forEach((c,i)=>{c.onclick=null;c.addEventListener('click',e=>{e.preventDefault();enter(c,i)})});
+cards.forEach((c,i)=>{c.onclick=null;c.addEventListener('click',e=>{e.preventDefault();if(dragging||performance.now()<preventClickUntil)return;enter(c,i)})});
+// All other museum sections retain their scroll-triggered entrance animation.
 if('IntersectionObserver' in window){
- const io=new IntersectionObserver(items=>items.forEach(item=>{if(item.isIntersecting){item.target.classList.add('is-visible');io.unobserve(item.target)}}),{threshold:.1,rootMargin:'0px 0px -20px 0px'});
- const register=()=>document.querySelectorAll('.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper').forEach(node=>{if(node.dataset.reveal)return;node.dataset.reveal='1';if(!reduce.matches){node.classList.add('scroll-reveal');io.observe(node)}});
+ const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}}),{threshold:.08});
+ const register=()=>document.querySelectorAll('.era-tour-heading,.era-featured,.era-artwork,.timeline .period,.journal .paper').forEach(node=>{if(node.dataset.reveal)return;node.dataset.reveal='1';if(!reduced.matches){node.classList.add('scroll-reveal');io.observe(node)}});
  register();new MutationObserver(register).observe(document.getElementById('eraArtworks'),{childList:true});
 }
-const feature=document.getElementById('eraFeaturedImage');
-function parallax(){if(reduce.matches)return;const rect=document.getElementById('eraTour').getBoundingClientRect();const p=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));feature.style.transform='scale('+(1.07-p*.07)+') translateY('+((1-p)*10)+'px)'}
-addEventListener('scroll',parallax,{passive:true});parallax();
 })();
 </script></body></html>
